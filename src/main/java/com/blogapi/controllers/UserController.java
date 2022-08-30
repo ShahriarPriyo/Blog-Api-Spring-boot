@@ -1,15 +1,16 @@
 package com.blogapi.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+// import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.models.User;
 import com.blogapi.services.UserServices;
 
 @RestController
@@ -19,12 +20,12 @@ public class UserController {
     private UserServices userServices;
 
     @RequestMapping("/users")
-    public List<User> getAllUsers() {
+    public Iterable<User> getAllUsers() {
         return userServices.getAllUsers();
     }
 
     @RequestMapping("users/{id}")
-    public User getUser(@PathVariable int id) {
+    public Optional<User> getUser(@PathVariable int id) {
         return userServices.getUser(id);
     }
 
